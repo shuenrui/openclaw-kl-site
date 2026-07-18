@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openclaw KL — Agents for everyone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f4efe8; --dim:rgba(244,239,232,.62); --amber:#ffc878; --bg:#06070f;
+    --serif:'Instrument Serif',serif; --sans:'Space Grotesk',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:auto}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
+  ::selection{background:var(--amber);color:#111}
+
+  /* ---------- scrub sections ---------- */
+  .scene{position:relative}
+  .scene .sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+  .scene video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transition:opacity .45s ease}
+  .scene video.ready{opacity:1}
+  .scene::after{content:'';position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(6,7,15,.55) 0%,rgba(6,7,15,0) 22%,rgba(6,7,15,0) 62%,rgba(6,7,15,.92) 100%)}
+  .scene .sticky::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(6,7,15,.55) 0%,rgba(6,7,15,0) 22%,rgba(6,7,15,0) 62%,rgba(6,7,15,.92) 100%)}
+
+  .copy{position:absolute;z-index:2;left:6vw;right:6vw;bottom:12vh;max-width:820px;
+    opacity:0;transform:translateY(34px);transition:opacity .5s ease,transform .5s ease}
+  .copy.show{opacity:1;transform:none}
+  .kicker{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
+  .copy h1,.copy h2{font-family:var(--serif);font-weight:400;line-height:1.02;
+    font-size:clamp(44px,7.2vw,104px);text-wrap:balance}
+  .copy h2 em,.copy h1 em{font-style:italic;color:var(--amber)}
+  .copy p{margin-top:22px;max-width:52ch;color:var(--dim);font-size:clamp(15px,1.35vw,18px);
+    font-weight:300;line-height:1.65}
+
+  /* ---------- progress ---------- */
+  .hud{position:fixed;z-index:10;right:26px;top:50%;transform:translateY(-50%);
+    display:flex;flex-direction:column;gap:14px}
+  .hud span{width:6px;height:6px;border-radius:50%;background:rgba(244,239,232,.28);transition:all .3s}
+  .hud span.on{background:var(--amber);transform:scale(1.5)}
+
+  header{position:fixed;z-index:10;top:0;left:0;right:0;display:flex;justify-content:space-between;
+    align-items:center;padding:26px 6vw;mix-blend-mode:difference}
+  header .logo{font-family:var(--serif);font-size:22px;font-style:italic}
+  header nav{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+  header nav a{color:inherit;text-decoration:none;margin-left:28px;opacity:.75}
+  header nav a:hover{opacity:1}
+
+  /* ---------- outro ---------- */
+  .outro{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    align-items:center;text-align:center;padding:16vh 6vw;background:
+    radial-gradient(1200px 600px at 50% 118%,rgba(255,200,120,.14),transparent 60%),var(--bg)}
+  .outro h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,88px);line-height:1.05}
+  .outro h2 em{font-style:italic;color:var(--amber)}
+  .outro p{margin-top:24px;color:var(--dim);font-weight:300;max-width:56ch;line-height:1.7}
+  .cta{margin-top:46px;display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center}
+  .cta a{font-size:13px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+    padding:16px 34px;border-radius:999px;transition:all .3s}
+  .cta .solid{background:var(--amber);color:#171006}
+  .cta .solid:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,200,120,.28)}
+  .cta .ghost{border:1px solid rgba(244,239,232,.3);color:var(--ink)}
+  .cta .ghost:hover{border-color:var(--amber);color:var(--amber)}
+  footer{padding:34px 6vw;display:flex;justify-content:space-between;color:rgba(244,239,232,.4);
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+  @media (max-width:720px){
+    .hud{display:none}
+    header nav a{margin-left:16px}
+    .copy{bottom:9vh}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .scene{height:auto!important}
+    .scene .sticky{position:relative;height:100vh}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Openclaw KL</div>
+  <nav><a href="#outro">Join us</a></nav>
+</header>
+
+<div class="hud"><span class="on"></span><span></span><span></span></div>
+
+<!-- SCENE 1 -->
+<section class="scene" data-clip="assets/clip1.mp4" data-poster="assets/scene1.jpg" style="height:480vh">
+  <div class="sticky">
+    <video muted playsinline preload="none"></video>
+    <div class="copy">
+      <div class="kicker">Openclaw KL · Kuala Lumpur</div>
+      <h1>The city learns<br>to <em>delegate.</em></h1>
+      <p>A community where non-technical builders in KL put AI agents to work — no code, no gatekeeping, just intent and a ray of passion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 2 -->
+<section class="scene" data-clip="assets/clip2.mp4" data-poster="assets/scene2.jpg" style="height:480vh">
+  <div class="sticky">
+    <video muted playsinline preload="none"></video>
+    <div class="copy">
+      <div class="kicker">Shophouse sessions</div>
+      <h2>Builders,<br>not <em>spectators.</em></h2>
+      <p>Weekly hands-on nights in a restored KL shophouse. Bring a problem from your work or your neighbourhood — leave with a working agent that does it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 3 -->
+<section class="scene" data-clip="assets/clip3.mp4" data-poster="assets/scene3.jpg" style="height:480vh">
+  <div class="sticky">
+    <video muted playsinline preload="none"></video>
+    <div class="copy">
+      <div class="kicker">Civic layer</div>
+      <h2>Your city,<br><em>upgraded.</em></h2>
+      <p>From kopitiam ops to city services — we build agents that make urban life work better, and we open-source the playbooks for every Malaysian city that wants them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro" id="outro">
+  <h2>Come build<br>the <em>agent city.</em></h2>
+  <p>Openclaw KL meets weekly in Brickfields. Mandarin-friendly, beginner-first, zero slides-about-slides. Your first agent ships on your first night.</p>
+  <div class="cta">
+    <a class="solid" href="#">Join the next session</a>
+    <a class="ghost" href="#">See what members built</a>
+  </div>
+</section>
+
+<footer>
+  <span>Openclaw KL</span>
+  <span>Made with agents, in KL</span>
+</footer>
+
+<script>
+/* ---------- Lenis smooth scroll (optional — engine must not depend on it) ---------- */
+let lenis = null;
+try{
+  if (typeof Lenis !== 'undefined'){
+    lenis = new Lenis({ lerp: 0.09 });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+}catch(e){ console.warn('Lenis unavailable, native scroll fallback:', e); }
+
+/* ---------- Blob-seek scrub engine (per skill Module A) ----------
+   Each scene: video fetched as blob -> object URL (instant, stutter-free
+   seeking), lazy-loaded on approach, currentTime driven by scroll progress. */
+const scenes = [...document.querySelectorAll('.scene')];
+const hud = [...document.querySelectorAll('.hud span')];
+
+const state = scenes.map(sec => ({
+  sec,
+  video: sec.querySelector('video'),
+  copy: sec.querySelector('.copy'),
+  blobLoaded: false,
+  duration: 0
+}));
+
+async function blobify(s){
+  if (s.blobLoaded) return;
+  s.blobLoaded = true;
+  const url = s.sec.dataset.clip;
+  try{
+    const buf = await (await fetch(url)).arrayBuffer();
+    s.video.src = URL.createObjectURL(new Blob([buf], { type: 'video/mp4' }));
+  }catch(e){
+    s.video.src = url; // fallback: direct src
+  }
+  s.video.poster = s.sec.dataset.poster;
+  s.video.addEventListener('loadedmetadata', () => {
+    s.duration = s.video.duration;
+    s.video.classList.add('ready');
+  }, { once:true });
+  s.video.load();
+}
+
+/* lazy-load when a scene is within 1 viewport */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    const s = state.find(x => x.sec === en.target);
+    if (en.isIntersecting) blobify(s);
+  });
+}, { rootMargin: '100% 0px 100% 0px' });
+scenes.forEach(sec => io.observe(sec));
+
+/* scroll drive */
+function clamp(v,a,b){ return Math.min(b, Math.max(a, v)); }
+function update(){
+  const vh = innerHeight;
+  state.forEach((s, i) => {
+    const r = s.sec.getBoundingClientRect();
+    const scrollable = r.height - vh;
+    const p = clamp(-r.top / scrollable, 0, 1);
+
+    if (s.duration > 0 && r.top < vh && r.bottom > 0){
+      const t = p * s.duration;
+      if (Math.abs(s.video.currentTime - t) > 0.04) s.video.currentTime = t;
+    }
+
+    /* copy + seam fade: copy visible in middle band of the scene */
+    const show = p > 0.12 && p < 0.88;
+    s.copy.classList.toggle('show', show);
+    if (hud[i]) hud[i].classList.toggle('on', r.top < vh/2 && r.bottom > vh/2);
+  });
+  requestAnimationFrame(update);
+}
+requestAnimationFrame(update);
+
+/* reduced motion: freeze scrub, show posters + copy */
+if (matchMedia('(prefers-reduced-motion: reduce)').matches){
+  state.forEach(s => { s.copy.classList.add('show'); });
+}
+</script>
+</body>
+</html>
