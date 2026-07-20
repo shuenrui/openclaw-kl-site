@@ -13,14 +13,36 @@
 <meta property="og:url" content="https://shuenrui.github.io/openclaw-kl-site/">
 <meta property="og:image" content="https://shuenrui.github.io/openclaw-kl-site/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenClaw KL — The city learns to delegate.">
+<meta name="twitter:description" content="AI builder community in Kuala Lumpur. Weekly hands-on nights in Brickfields. Your first agent ships on your first night.">
+<meta name="twitter:image" content="https://shuenrui.github.io/openclaw-kl-site/assets/og.jpg">
+<meta name="theme-color" content="#faf7f2">
+<link rel="canonical" href="https://shuenrui.github.io/openclaw-kl-site/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"OpenClaw KL",
+ "url":"https://shuenrui.github.io/openclaw-kl-site/",
+ "logo":"https://shuenrui.github.io/openclaw-kl-site/assets/logo.png",
+ "description":"Kuala Lumpur chapter of Claw Collective (Impossible Finance) — an agent-agnostic community teaching non-technical builders in Malaysia to put AI agents to work.",
+ "parentOrganization":{"@type":"Organization","name":"Claw Collective / Impossible Finance"},
+ "address":{"@type":"PostalAddress","addressLocality":"Brickfields, Kuala Lumpur","addressCountry":"MY"},
+ "sameAs":["https://www.linkedin.com/company/openclaw-kl/","https://github.com/shuenrui/openclaw-kl-site"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Event","name":"OpenClaw KL Weekly Builder Night",
+ "eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+ "location":{"@type":"Place","name":"Brickfields","address":{"@type":"PostalAddress","addressLocality":"Kuala Lumpur","addressCountry":"MY"}},
+ "organizer":{"@type":"Organization","name":"OpenClaw KL","url":"https://shuenrui.github.io/openclaw-kl-site/"},
+ "description":"Weekly hands-on AI agent builder night. Free, beginner-first. Next session date announced on LinkedIn.",
+ "url":"https://www.linkedin.com/company/openclaw-kl/"}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --paper:#faf7f2; --ink:#1c1814; --ink-soft:#5d554b; --ink-faint:#8a8177;
+  --paper:#faf7f2; --ink:#1c1814; --ink-soft:#5d554b; --ink-faint:#6f665c;
   --orange:#D96B3A; --orange-deep:#c15627; --line:rgba(28,24,20,.14);
   --card:#ffffff; --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
 }
@@ -67,6 +89,12 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;
 .btn.ghost:hover{background:var(--ink);color:var(--paper)}
 .hero .art{position:relative}
 .hero .art img{width:100%;max-width:560px;margin-left:auto}
+/* ASCII hero (claw) */
+#fig{font-family:'SF Mono',ui-monospace,Menlo,Consolas,monospace;line-height:1.0;white-space:pre;
+  margin:0;user-select:none;color:var(--orange);letter-spacing:.5px;
+  font-size:clamp(7px,1.35vw,13px);text-shadow:0 0 14px rgba(217,107,58,.28)}
+.art{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;min-height:420px}
+.cap{margin-top:18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
 .hero .stat-row{display:flex;gap:44px;margin-top:56px;padding-top:32px;border-top:1px solid var(--line)}
 .hero .stat b{font-family:var(--serif);font-weight:500;font-size:34px;display:block;color:var(--ink)}
 .hero .stat span{font-size:12.5px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase}
@@ -243,10 +271,11 @@ footer .flinks a:hover{color:var(--orange)}
 <body>
 
 <!-- ================= HEADER ================= -->
+<a href="#about" class="skip-link" style="position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:12px 20px;z-index:100;border-radius:0 0 12px 0" onfocus="this.style.left='0'" onblur="this.style.left='-9999px'">Skip to content</a>
 <header>
   <nav class="nav">
     <a class="brand" href="#top"><img src="assets/logo.png" alt="OpenClaw KL"></a>
-    <button class="burger" aria-label="Menu" onclick="document.querySelector('.nav .links').classList.toggle('open')">
+    <button class="burger" aria-label="Menu" aria-expanded="false" onclick="const l=document.querySelector('.nav .links');l.classList.toggle('open');this.setAttribute('aria-expanded',l.classList.contains('open'))">
       <span></span><span></span><span></span>
     </button>
     <div class="links">
@@ -276,7 +305,11 @@ footer .flinks a:hover{color:var(--orange)}
       <div class="stat"><b>15+</b><span>Partners</span></div>
     </div>
   </div>
-  <div class="art rv"><img src="assets/hero-claw.png" alt="OpenClaw crab claw — halftone illustration"></div>
+  <div class="art rv">
+    <pre id="fig" class="claw" aria-hidden="true"></pre>
+    <span class="cap" id="cap"></span>
+    <noscript><img src="assets/hero-claw.png" alt="OpenClaw crab claw — halftone illustration"></noscript>
+  </div>
 </section>
 
 <!-- ================= PARTNER STRIP ================= -->
@@ -296,7 +329,7 @@ footer .flinks a:hover{color:var(--orange)}
   <div class="sec-head">
     <div class="k">About</div>
     <h2>Builders, not <em>spectators.</em></h2>
-    <p>Founded March 2026 in Kuala Lumpur, OpenClaw KL is the Malaysian chapter of <b>Claw Collective</b> — Impossible Finance's AI venture breeder. We're agent-agnostic: whatever tool gets your idea shipped, that's the right tool. <a href="https://www.notion.so/impossiblefinance/Claw-Collective-Source-of-Truth-3287cf9e26b8805e90fbe7de18674dca" target="_blank" rel="noopener" style="color:var(--orange)">Claw Collective source of truth →</a></p>
+    <p>Founded March 2026 in Kuala Lumpur, OpenClaw KL is the Malaysian chapter of <b>Claw Collective</b> — Impossible Finance's AI venture breeder. We're agent-agnostic: whatever tool gets your idea shipped, that's the right tool.</p>
   </div>
   <div class="about-grid">
     <div class="about-card">
@@ -327,7 +360,7 @@ footer .flinks a:hover{color:var(--orange)}
   <div class="sec-head">
     <div class="k">Portfolio</div>
     <h2>What we've <em>built.</em></h2>
-    <p>Four major events and counting — every one hands-on, every attendee leaving with something that runs.</p>
+    <p>Four major events plus community gatherings — every one hands-on, every attendee leaving with something that runs.</p>
   </div>
   <div class="timeline">
     <div class="t-item">
@@ -381,9 +414,10 @@ footer .flinks a:hover{color:var(--orange)}
   <div class="sec-head">
     <div class="k">Members built</div>
     <h2>Agents from the <em>community.</em></h2>
-    <p>Real tools built by OpenClaw KL members — at meetups, at the fellowship, at 2am. Submissions reviewed weekly; approved agents appear here automatically.</p>
+    <p>Sample projects from community nights — the real gallery fills in as fellows and members submit. Submissions are reviewed weekly; approved agents are added here by the team.</p>
   </div>
   <div class="toolbar">
+    <label for="q" style="position:absolute;left:-9999px">Search agents</label>
     <input type="search" id="q" placeholder="Search agents…">
     <button class="fbtn on" data-f="all">All</button>
     <button class="fbtn" data-f="productivity">Productivity</button>
@@ -430,7 +464,7 @@ footer .flinks a:hover{color:var(--orange)}
       </select>
       <button class="btn solid" type="submit">Submit for review →</button>
       <div class="form-note">Opens a pre-filled GitHub issue — no account data stored on this site.</div>
-      <div class="form-ok" id="formOk">✅ Submission drafted in a new tab — hit "Create" on GitHub and you're in the queue.</div>
+      <div class="form-ok" id="formOk" role="status" aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -439,7 +473,8 @@ footer .flinks a:hover{color:var(--orange)}
 <section class="block rv" id="voices">
   <div class="sec-head">
     <div class="k">Voices</div>
-    <h2>People who <em>shipped.</em></h2>
+    <h2>The room's <em>vibe.</em></h2>
+    <p style="margin-top:14px;font-size:13.5px;color:var(--ink-faint)">The feeling, as members describe it — real testimonials with names on request.</p>
   </div>
   <div class="soc-grid">
     <div class="quote">
@@ -491,6 +526,67 @@ footer .flinks a:hover{color:var(--orange)}
 </footer>
 
 <script>
+/* ---------- ASCII claw hero (adapted from community handoff; claw-only, light theme) ---------- */
+(function(){
+  const el=document.getElementById('fig'), cap=document.getElementById('cap');
+  if(!el) return;
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let fx=0.5, fy=0.5, pActive=false, pLast=0, clickPulse=0;
+  function onMove(e){const r=el.getBoundingClientRect();fx=(e.clientX-r.left)/r.width;fy=(e.clientY-r.top)/r.height;pActive=true;pLast=performance.now();}
+  window.addEventListener('pointermove',onMove,{passive:true});
+  window.addEventListener('pointerdown',e=>{onMove(e);clickPulse=1;},{passive:true});
+  const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+  const CCOLS=54,CROWS=42,CCH=".,-~:;=!*#$@";
+  const PALM=(function(){const P=[];const a=1.05,b=1.05,c=0.7;
+    for(let i=0;i<46;i++){const u=i/46*2*Math.PI;for(let j=0;j<=24;j++){const v=j/24*Math.PI;
+      const x=a*Math.sin(v)*Math.cos(u),y=b*Math.sin(v)*Math.sin(u),z=c*Math.cos(v);
+      const l=Math.hypot(x/(a*a),y/(b*b),z/(c*c));
+      P.push([x,y,z,x/(a*a)/l,y/(b*b)/l,z/(c*c)/l]);}}return P;})();
+  function addFinger(P,sign,o){const L=1.95,baseR=(sign>0?0.34:0.30),pivx=sign*0.4,pivy=0.75;
+    const phi=-sign*(0.10+0.55*o),curl=0.75,cs=Math.cos(phi),sn=Math.sin(phi);
+    const C=s=>{const lx=-sign*curl*s*s,ly=L*s;return [pivx+(cs*lx-sn*ly),pivy+(sn*lx+cs*ly),0];};
+    const tS=58,thS=18;
+    for(let i=0;i<=tS;i++){const t=i/tS,p=C(t),pa=C(Math.min(1,t+0.02)),pb=C(Math.max(0,t-0.02));
+      const dx=pa[0]-pb[0],dy=pa[1]-pb[1],dl=Math.hypot(dx,dy)||1;
+      const px=-dy/dl,py=dx/dl,rr=baseR*(1-0.6*t);
+      for(let j=0;j<thS;j++){const th=j/thS*2*Math.PI,cc=Math.cos(th),ss=Math.sin(th);
+        const nx=cc*px,ny=cc*py,nz=ss;P.push([p[0]+rr*nx,p[1]+rr*ny,p[2]+rr*nz,nx,ny,nz]);}}}
+  const czb=new Float32Array(CCOLS*CROWS),cout=new Array(CCOLS*CROWS);
+  let lgx=0.35,lgy=0.5,lgz=-0.78;{const l=Math.hypot(lgx,lgy,lgz);lgx/=l;lgy/=l;lgz/=l;}
+  const cK1=46,cK2=5.4,ccx=CCOLS/2,ccy=CROWS/2;
+  function renderClaw(o,roll,lift,yaw,pitch){
+    const P=PALM.slice();addFinger(P,1,o);addFinger(P,-1,o);czb.fill(0);cout.fill(' ');
+    const cZ=Math.cos(roll),sZ=Math.sin(roll),cY=Math.cos(yaw),sY=Math.sin(yaw),cX=Math.cos(pitch),sX=Math.sin(pitch);
+    for(let k=0;k<P.length;k++){const p=P[k];
+      let x=p[0],y=p[1]-0.55,z=p[2],nx=p[3],ny=p[4],nz=p[5];
+      let X=cZ*x-sZ*y,Y=sZ*x+cZ*y;x=X;y=Y+lift;
+      let NX=cZ*nx-sZ*ny,NY=sZ*nx+cZ*ny;nx=NX;ny=NY;
+      const x1=cY*x+sY*z,z1=-sY*x+cY*z,nx1=cY*nx+sY*nz,nz1=-sY*nx+cY*nz;
+      const y2=cX*y-sX*z1,z2=sX*y+cX*z1,ny2=cX*ny-sX*nz1,nz2=sX*ny+cX*nz1;
+      const ooz=1/(z2+cK2),xp=(ccx+cK1*0.95*x1*ooz)|0,yp=(ccy-cK1*0.5*y2*ooz)|0;
+      if(xp<0||xp>=CCOLS||yp<0||yp>=CROWS)continue;const idx=xp+yp*CCOLS;
+      if(ooz>czb[idx]){czb[idx]=ooz;const lum=nx1*lgx+ny2*lgy+nz2*lgz;
+        const ci=Math.max(0,Math.min(11,(lum*11+0.5)|0));cout[idx]=lum>0.05?CCH[ci]:'.';}}
+    let s='';for(let r=0;r<CROWS;r++)s+=cout.slice(r*CCOLS,r*CCOLS+CCOLS).join('')+'\n';el.textContent=s;
+  }
+  let cOpen=0.5,cLift=0,cRoll=0,cYaw=0.28,tOpen=0.5,tLift=0,tRoll=0,tYaw=0.28,cNext=0;const cPitch=0.18;
+  function stepClaw(now){
+    const pmX=(fx-0.5)*3.2,pmY=(0.5-fy)*4.0,dist=Math.hypot(pmX,pmY-0.15);
+    const near=pActive&&(now-pLast<600)&&dist<3.0;
+    if(near){tRoll=clamp(-pmX*0.17,-0.5,0.5);tYaw=clamp(0.22+pmX*0.10,-0.3,0.6);
+      tLift=clamp((pmY-0.1)*0.42,-0.5,1.0);
+      if(dist<0.9||clickPulse>0.01)tOpen=0.05;else tOpen=0.95;cNext=now+900;}
+    else if(now>cNext){cNext=now+1400+Math.random()*2200;tOpen=0.08+Math.random()*0.85;
+      tLift=-0.35+Math.random()*0.95;tRoll=(Math.random()-0.5)*0.42;tYaw=0.16+Math.random()*0.28;}
+    const bob=0.05*Math.sin(now*0.0016),sway=0.03*Math.sin(now*0.0011),eO=near?0.22:0.05;
+    cOpen+=(tOpen-cOpen)*eO;cLift+=((tLift+bob)-cLift)*0.07;cRoll+=((tRoll+sway)-cRoll)*0.08;cYaw+=(tYaw-cYaw)*0.06;
+    renderClaw(cOpen,cRoll,cLift,cYaw,cPitch);
+  }
+  cap.textContent='a living thing · come closer';
+  if(reduce){renderClaw(0.6,0.05,0.05,0.28,0.18);}
+  else{const loop=n=>{clickPulse*=0.9;stepClaw(n);requestAnimationFrame(loop);};requestAnimationFrame(loop);}
+})();
+
 /* ---------- showcase data ----------
    Approved submissions land here as entries (mirrors GitHub issues labelled
    'showcase'). Placeholder cards until first community submissions arrive. */
@@ -517,7 +613,7 @@ function render(filter='all', q=''){
     <article class="agent-card">
       <div class="shot">${a.name.split(' ')[0]}</div>
       <div class="body">
-        <span class="cat">${a.cat}</span>
+        <span class="cat">${a.cat} · sample</span>
         <h3>${a.name}</h3>
         <p>${a.desc}</p>
         <div class="meta">
@@ -557,8 +653,18 @@ ${v('f-desc')}
 
 ---
 _Submitted via openclaw-kl-site. Approved agents are added to the showcase gallery._`);
-  window.open(`https://github.com/shuenrui/openclaw-kl-site/issues/new?labels=showcase&title=${title}&body=${body}`, '_blank');
-  document.getElementById('formOk').style.display = 'block';
+  const url = `https://github.com/shuenrui/openclaw-kl-site/issues/new?labels=showcase&title=${title}&body=${body}`;
+  const win = window.open(url, '_blank', 'noopener');
+  const ok = document.getElementById('formOk');
+  if (win && !win.closed){
+    ok.textContent = '✅ Submission drafted in a new tab — hit "Create" on GitHub and you\'re in the queue.';
+    ok.style.background = 'rgba(217,107,58,.1)'; ok.style.borderColor = 'var(--orange)';
+  } else {
+    /* popup blocked (common on mobile) — offer a direct link instead of faking success */
+    ok.innerHTML = `⚠️ Your browser blocked the new tab. <a href="${url}" style="color:var(--orange);font-weight:600">Tap here to open your pre-filled submission →</a>`;
+    ok.style.background = '#fff8e6'; ok.style.borderColor = '#d9a53a';
+  }
+  ok.style.display = 'block';
 });
 
 /* ---------- scroll reveal ---------- */
